@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weight Loss Simplified: The Science</title>
+
+  <!-- Import Playfair Display Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    /* Loading Animation Styles */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 245, 247, 0.9); /* Match your background color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000; /* Ensure it's on top of everything */
+    }
+    .loader-spinner {
+      border: 4px solid #E6A8B0; /* Dusty Rose */
+      border-top: 4px solid #FFF5F7; /* Powder Blush */
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* General Styles */
+    body {
+      font-family: Georgia, serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FFF5F7; /* Powder Blush */
+      color: #5E4B56; /* Charcoal Mauve */
+      line-height: 1.6;
+    }
+
+    /* Header with Gradient */
+    header {
+      text-align: center;
+      padding: 1.5rem;
+      border-bottom: 2px solid #E6A8B0; /* Dusty Rose */
+      background: linear-gradient(180deg, #E5D4EF, #FFF5F7);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 1px;
+      margin: 0;
+      color: #5E4B56;
+    }
+
+    header p {
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Alternating Background Colors for Sections */
+    article:nth-child(odd) {
+      background-color: #FFF5F7; /* Powder Blush */
+    }
+
+    article:nth-child(even) {
+      background-color: #FADADD; /* Soft Pink */
+    }
+
+    /* Enhanced Articles */
+    article {
+      padding: 2rem;
+      border: 1px solid rgba(230, 168, 176, 0.3); /* Soft Dusty Rose Border */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    article h2 {
+      font-size: 1.9rem;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #E6A8B0;
+      padding-bottom: 0.5rem;
+      color: #5E4B56;
+    }
+
+    article p {
+      margin-bottom: 1rem;
+      text-align: justify;
+      font-size: 1.1rem;
+    }
+
+    /* Add soft shadow to images */
+    .article-image {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    /* Add soft shadow to images */
+    .article-2image {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .article-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    .article-2image img {
+      width: 700px;
+      height: 400px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    /* Slight Overlap for Newsletter Section */
+    .newsletter {
+      text-align: center;
+      margin: -30px auto 2rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, #FADADD, #E5D4EF);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .newsletter h2 {
+      font-size: 1.9rem;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 0.5rem;
+      color: #5E4B56;
+    }
+
+    .newsletter p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter input {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #E6A8B0;
+      border-radius: 5px;
+      width: 60%;
+      max-width: 300px;
+      font-family: 'Georgia', serif;
+      color: #5E4B56;
+      background-color: #FFF5F7;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .newsletter input:focus {
+      border-color: #5E4B56;
+      outline: none;
+      box-shadow: 0 0 5px rgba(94, 75, 86, 0.5);
+    }
+
+    /* Keep "Subscribe" Button as Is */
+    .newsletter button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #E6A8B0, #CDB4DB);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Georgia', serif;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .newsletter button:hover {
+      background: linear-gradient(135deg, #CDB4DB, #E6A8B0);
+      transform: translateY(-2px);
+    }
+
+    /* Keep Main CTA Button as Is */
+    .button-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .button-container a {
+      display: inline-block;
+      background-color: #E6A8B0; /* Solid Dusty Rose */
+      color: #fff;
+      padding: 1.5rem 3rem;
+      font-size: 2rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .button-container a:hover {
+      background-color: #CDB4DB; /* Muted Lavender */
+      transform: scale(1.05);
+    }
+
+    /* Soft Gradient for Footer */
+    footer {
+      text-align: center;
+      font-size: 1rem;
+      padding: 1rem;
+      border-top: 2px solid #E6A8B0;
+      margin-top: 2rem;
+      background: linear-gradient(180deg, #FFF5F7, #E5D4EF);
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Scroll-to-Top Button */
+    #scrollToTopBtn {
+      display: none; /* Hidden by default */
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 99;
+      font-size: 1.5rem;
+      border: none;
+      outline: none;
+      background-color: #E6A8B0; /* Dusty Rose */
+      color: white;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 50%;
+      transition: background-color 0.3s;
+    }
+
+    #scrollToTopBtn:hover {
+      background-color: #CDB4DB; /* Muted Lavender */
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <h1>Endocrinologist's Breakthrough: An INSTANT fix to cravings backed by science</h1>
+    <p>IgniScent Labs | U.S. | Women’s Health</p>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <article>
+      <h2>Weight Loss Boils Down to One Thing</h2>
+      <div class="article-image">
+        <img src="how-to-lose-weight-adele.jpg" alt="kadsfnadf">
+      </div>
+      <p>Do you find yourself stuck in a cycle of extensive cardio and restrictive diets without seeing the desired weight loss results? The science behind shedding pounds is deceptively straightforward: it's all about achieving a caloric deficit. No cutting-edge diet trend or intense exercise regimen can bypass the fundamental laws of thermodynamics.</p>
+      <p>"Every calorie is a unit of energy," states Dr. Hyuneum Jeon, a renowned endocrinologist who has helped reshape the lives of celebrities and high-profile individuals. "Our bodies store any excess calories as fat. Therefore, the key to effective weight loss is quite simple: consume fewer calories than you expend."</p>
+      <p>So, if the principle of weight loss is as simple as creating a caloric deficit, why do so many of us find it difficult? The answer often lies beyond the physical aspects, deep within our psychological and environmental influences.</p>
+      <p>One of the most significant hurdles in achieving weight loss is managing cravings, which often lead to the excessive consumption of calories. Have you ever noticed that boredom or stress intensifies your cravings? This is because cravings are not just about willpower; they're deeply rooted in our brain's reward system, influenced by hormones and external cues that can make controlling calorie intake challenging.</p>
+    </article>
+
+    <article>
+      <h2>Why Women Struggle More</h2>
+      <div class="article-2image">
+        <img src="What_Does_Your_First_Period_Look_Like_20964383-b86b-4747-8cb6-bceb8c037717.webp" alt="period">
+      </div>
+      <p>For women, the weight loss journey is often more complicated due to hormonal fluctuations. “The female body experiences significant changes during the menstrual cycle,” says Dr. Jeon. “During the luteal phase, when progesterone levels rise, women may experience increased hunger and cravings—especially for calorie-dense, carb-heavy, or sweet foods.” This increased appetite can make sticking to a calorie-restricted diet particularly challenging.</p>
+      <p>The surge in progesterone not only stimulates appetite but also can cause mood swings and fatigue, which might reduce motivation for physical activity. So next time you feel a dip in your motivation to exercise, remember that it might simply be the natural chemical processes of your body at play.</p>
+      <p>Estrogen, another key hormone, plays a role in body weight regulation by influencing energy balance and food intake. Low estrogen levels, commonly experienced just before menstruation, have been linked to a lower rate of glucose utilization, which can prompt cravings for sugar as the body seeks quick sources of energy. These hormonal shifts are not only a trigger for increased calorie consumption but also make it physiologically harder to lose body fat.</p>
+      <p>Compounding these challenges, leptin and ghrelin, hormones that regulate hunger, are also affected by the menstrual cycle. Leptin, which helps to regulate energy balance by inhibiting hunger, can be less effective during the menstrual cycle, while ghrelin, which stimulates appetite, might be elevated, leading to increased food intake. Therefore, the hormonal environment of a woman’s body during different phases of the menstrual cycle creates a naturally occurring obstacle to maintaining a calorie deficit, complicating efforts toward weight loss.</p>
+      <p>These biological shifts can scientifically complicate women's ability to maintain a consistent calorie deficit, often leading to frustration for many.</p>
+    </article>
+
+    <article>
+      <h2>A Simple Science-Backed Solution</h2>
+      <p>Dr. Jeon has discovered a straightforward way to combat cravings: green tea and menthol extracts. These natural ingredients suppress appetite, reduce cravings, and even boost energy levels. “This small tweak can make a big difference for women trying to maintain a caloric deficit,” he explains.</p>
+      <p>Green tea contains catechins, particularly epigallocatechin gallate (EGCG), which boost metabolism and increase fat oxidation by enhancing levels of the fat-burning hormone norepinephrine. Additionally, the synergy between the caffeine in green tea and catechins enhances thermogenesis, the process of heat production in the body, which helps burn calories.</p>
+      <p>Menthol, found in peppermint, affects the satiety center in the hypothalamus, triggering feelings of fullness and reducing the urge to overeat. Its cooling effect also prompts a minor increase in energy expenditure as the body works to regulate its temperature.</p>
+      <p>It's truly disheartening to see the unique and often overlooked challenges women face during their weight loss journeys. We've been there too, and we understand the discouraging challenges that come with weight loss. In response to this, we have collaborated with Dr. Jeon to introduce a new tool in the fight against cravings.</p>
+      <p>We've developed an essential oil inhaler that blends the metabolic-enhancing properties of green tea with other effective compounds. This product is designed for use whenever cravings emerge, providing a natural and straightforward method to aid women in their quest for health, without adding to their stress. Our aim is to empower women by simplifying aspects of their weight management efforts, helping them achieve their goals with greater ease and support.</p>
+      <p>Skeptical? So were we. But after speaking to satisfied customers and watching Dr. Jeon’s viral video—which has amassed over 3 million views in just two months—it’s hard to ignore the results. Women from across the country have shared inspiring transformation stories, crediting this method for their newfound success.</p>
+    </article>
+
+    <!-- Main CTA Button -->
+    <div class="button-container">
+      <a href="https://your-shopify-store-link.com" target="_blank">Get Yours Now</a>
+    </div>
+
+    <!-- Newsletter Form -->
+    <section class="newsletter">
+      <h2>Subscribe to Our Newsletter</h2>
+      <p>Get the latest updates, tips, and exclusive offers straight to your inbox.</p>
+      <form id="newsletterForm" action="thank-you.html" method="GET">
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 IgniScent Labs | For inquiries, contact info@igniscentlabs.com</p>
+  </footer>
+
+  <!-- Scroll-to-Top Button -->
+  <button id="scrollToTopBtn" title="Go to top">↑</button>
+
+  <!-- JavaScript for Loading Animation and Scroll-to-Top Button -->
+  <script>
+    // Hide the loader when the page has fully loaded
+    window.addEventListener("load", function() {
+      document.getElementById("loader").style.display = "none";
+    });
+
+    // Scroll-to-Top Button Functionality
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+    window.onscroll = function() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollToTopBtn.style.display = "block";
+      } else {
+        scrollToTopBtn.style.display = "none";
+      }
+    };
+
+    scrollToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    });
+  </script>
+</body>
+</html>
